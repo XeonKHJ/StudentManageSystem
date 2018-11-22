@@ -2,47 +2,49 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
-<script>
-<--!>注册功能
-</script>
-<meta charset="UTF-8">
-<title>注册</title>
+	<script>
+		//待完成：注册功能
+	</script>
+	<meta charset="UTF-8">
+	<title>注册</title>
 </head>
+
 <body>
 	<form action="Login" name="loginForm" method="post">
 		<table>
 			<tr>
-				<td><label for="username">ID:&nbsp;</label></td>
-				<td><input name="userId" tabindex="1" title="请输就用户名"
-					id="userId" style="width: 105px;" type="text" maxlength="40"
-					value=""></td>
+				<td><label for="userId">ID:&nbsp;</label></td>
+				<td><input name="userId" tabindex="1" title="请输就用户名" id="userId" style="width: 105px;" type="text" maxlength="40"
+					 value=""></td>
 			</tr>
 			<tr>
 				<td><label for="password">密 码:&nbsp;</label></td>
-				<td><input name="password" tabindex="2" id="password"
-					style="width: 105px;" type="password" maxlength="40" /> <input
-					name="encodedPassword" type="hidden" value="" /></td>
+				<td><input name="password" tabindex="2" id="password" style="width: 105px;" type="password" maxlength="40" />
+					<input name="encodedPassword" type="hidden" value="" /></td>
 			</tr>
 			<tr>
-				<td><label for="password">姓名:&nbsp;</label></td>
-				<td><input name="password" tabindex="2" id="password"
-					style="width: 105px;" type="password" maxlength="40" /> <input
-					name="encodedPassword" type="hidden" value="" /></td>
+				<td><label for="name">姓名:&nbsp;</label></td>
+				<td><input name="name" tabindex="2" id="name" style="width: 105px;" type="text" maxlength="40" /> <input name="encodedPassword"
+					 type="hidden" value="" /></td>
 			</tr>
 			<tr>
-				<td><label for="password">类型:&nbsp;</label></td>
-				<td><input name="password" tabindex="2" id="password"
-					style="width: 105px;" type="password" maxlength="40" /> <input
-					name="encodedPassword" type="hidden" value="" /></td>
+				<td><label for="occupation">类型:&nbsp;</label></td>
+				<td>
+					<select name="occupation">
+						<option value="student">学生</option>
+						<option value="teacher">老师</option>
+					</select>
+				</td>
 			</tr>
 			<tr>
 				<td><label for="password">密 码:&nbsp;</label></td>
-				<td><input name="password" tabindex="2" id="password"
-					style="width: 105px;" type="password" maxlength="40" /> <input
-					name="encodedPassword" type="hidden" value="" /></td>
+				<td><input name="password" tabindex="2" id="password" style="width: 105px;" type="password" maxlength="40" />
+					<input name="encodedPassword" type="hidden" value="" /></td>
 			</tr>
 		</table>
 	</form>
 </body>
+
 </html>

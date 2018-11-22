@@ -74,7 +74,7 @@ body {
 						<td style="text-align: center; color: red;" colspan="2"></td>
 					</tr>
 					<tr>
-						<td><label for="username">用户名:&nbsp;</label></td>
+						<td><label for="userId">用户名:&nbsp;</label></td>
 						<td><input name="userId" tabindex="1" title="请输就用户名"
 							id="userId" style="width: 105px;" type="text" maxlength="40"
 							value=""></td>
