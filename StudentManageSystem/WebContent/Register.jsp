@@ -5,6 +5,10 @@
 
 <head>
 	<script>
+		function register()
+		{
+			//调用Register.java中的类完成该功能。
+		}
 		//待完成：注册功能
 	</script>
 	<meta charset="UTF-8">
