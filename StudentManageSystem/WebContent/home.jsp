@@ -1,8 +1,8 @@
 <heml>
     <head>
-        <title>欢迎来到学生信息管理系统</title>
+        <title>欢迎来到学生信息管理系统</title>
     </head>
-    <bodu>
+    <body>
         
-    </bodu>
+    </body>
 </heml>

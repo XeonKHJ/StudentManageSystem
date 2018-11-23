@@ -34,16 +34,16 @@ public class RegisterCheck extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
-		String occupation = request.getParameters("occupation");
-		String id = request.getParameters("userId");
-		String name = request.getParameters("name");
-		String password = reqeust.getParameters("password");
+		String occupation = request.getParameter("occupation");
+		String id = request.getParameter("userId");
+		String name = request.getParameter("name");
+		String password = request.getParameter("password");
 		try {
 			Connection dbConnection;
-			DatabaseConnection dbConnectionInfo = new DatabaseConnection("StudentManageAdmin", "admin", "XEON-DELL7460", "StudentsManagement");
-			String createUserSql = "USE [master]\r\n" + 
+			DatabaseConnection dbConnectionInfo = new DatabaseConnection("StudentManagementAdmin", "admin", "XEON-DELL7460", "StudentsManagement");
+			/*String createUserSql = "USE [master]\r\n" + 
 					"GO\r\n" + 
-					"CREATE LOGIN [20162430307] WITH PASSWORD=N'0978286092', DEFAULT_DATABASE=[StudentsManagement], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF\r\n" + 
+					"CREATE LOGIN [" + id + "] WITH PASSWORD=N'" + password + "', DEFAULT_DATABASE=[StudentsManagement], CHECK_EXPIRATION=OFF, CHECK_POLICY=OFF\r\n" + 
 					"GO\r\n" + 
 					"use [StudentsManagement]\r\n" + 
 					"\r\n" + 
@@ -53,23 +53,16 @@ public class RegisterCheck extends HttpServlet {
 					"GO\r\n" + 
 					"USE [StudentsManagement]\r\n" + 
 					"GO\r\n" + 
-					"CREATE USER [20162430307] FOR LOGIN [20162430307]\r\n" + 
+					"CREATE USER ["+ id + "] FOR LOGIN [" + id +"]\r\n" + 
 					"GO\r\n" + 
 					"USE [StudentsManagement]\r\n" + 
 					"GO\r\n" + 
-					"ALTER ROLE [Student] ADD MEMBER [20162430307]\r\n" + 
-					"GO\r\n";
+					"ALTER ROLE [" + occupation + "] ADD MEMBER [" + id + "]\r\n" + 
+					"GO\r\n";*/
+			String createPerson = "INSERT INTO " + occupation + "s VALUES ('" + id + "', '" + name + "')";
 			dbConnection = dbConnectionInfo.getCon();
 			Statement stat = dbConnection.createStatement();
-			ResultSet result = stat.executeQuery(createUserSql);
-			if (result == Statement.Success)
-			{
-				String addPerson = "INSERT" + occpupation + "VALUE(" + id + "," + name + ","+ birthday + ",", enterYear + ")";
-				if(stat.executeQuery(addPerson))
-				{
-					out.println("<p>注册成功</p>");
-				}
-			}
+			int result = stat.executeUpdate(createPerson);
 		} catch (SQLServerException e) {
 			out.println("<p>网站错误</p>");
 		} catch (SQLException e) {

@@ -44,10 +44,10 @@
 				</select></td>
 			</tr>
 			<tr>
-				<td><label for="password">密 码:&nbsp;</label></td>
-				<td><input name="password" tabindex="2" id="password"
-					style="width: 105px;" type="password" maxlength="40" /> <input
-					name="encodedPassword" type="hidden" value="" /></td>
+				<td><label for="birthday">生日:&nbsp;</label></td>
+				<td><input name="birthday" tabindex="2" id="password"
+					style="width: 105px;" type="date" maxlength="40" /> <input
+					name="birthday" type="hidden" value="" /></td>
 			</tr>
 			<tr>
 				<td colspan="2"><input name="submitBtn" tabindex="6"
