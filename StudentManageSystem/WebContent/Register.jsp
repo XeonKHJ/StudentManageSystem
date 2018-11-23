@@ -16,7 +16,7 @@
 </head>
 
 <body>
-	<form action="RegisterCheck" name="loginForm" method="post">
+	<form action="RegisterCheck" name="registerForm" method="post">
 		<table>
 			<tr>
 				<td><label for="userId">ID:&nbsp;</label></td>

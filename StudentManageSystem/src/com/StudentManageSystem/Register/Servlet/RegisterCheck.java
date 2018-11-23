@@ -34,6 +34,10 @@ public class RegisterCheck extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		PrintWriter out = response.getWriter();
+		String occupation = request.getParameters("occupation");
+		String id = request.getParameters("userId");
+		String name = request.getParameters("name");
+		String password = reqeust.getParameters("password");
 		try {
 			Connection dbConnection;
 			DatabaseConnection dbConnectionInfo = new DatabaseConnection("StudentManageAdmin", "admin", "XEON-DELL7460", "StudentsManagement");
@@ -57,11 +61,20 @@ public class RegisterCheck extends HttpServlet {
 					"GO\r\n";
 			dbConnection = dbConnectionInfo.getCon();
 			Statement stat = dbConnection.createStatement();
-			stat.executeQuery(createUserSql);
+			ResultSet result = stat.executeQuery(createUserSql);
+			if (result == Statement.Success)
+			{
+				String addPerson = "INSERT" + occpupation + "VALUE(" + id + "," + name + ","+ birthday + ",", enterYear + ")";
+				if(stat.executeQuery(addPerson))
+				{
+					out.println("<p>注册成功</p>");
+				}
+			}
 		} catch (SQLServerException e) {
-			out.println("<p>账号密码错误</p>");
+			out.println("<p>网站错误</p>");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			out.println("<p>注册失败</p>");
 			e.printStackTrace();
 		}
 	}
