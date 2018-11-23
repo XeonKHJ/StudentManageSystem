@@ -38,9 +38,11 @@ public class RegisterCheck extends HttpServlet {
 		String name = request.getParameter("name");
 		String password = request.getParameter("password");
 		String birthday = request.getParameter("birthday");
+		String sex = request.getParameter("sex") == "male" ? "男": "女";
+		String enterYear = request.getParameter("enterYear");
 		try {
 			DatabaseConnection dbConnectionInfo = new DatabaseConnection("StudentManagementAdmin", "admin", "XEON-DELL7460", "StudentsManagement");
-			String createPerson = "INSERT INTO " + occupation + "s VALUES ('" + id + "', '" + name + "', '" + birthday + "')";
+			String createPerson = "INSERT INTO " + occupation + "s VALUES ('" + id + "', '" + name + "', '" + sex + "', '" + birthday + "', '" + enterYear +"')";
 			Connection dbConnection = dbConnectionInfo.getCon();
 			Statement stat = dbConnection.createStatement();
 			int result = stat.executeUpdate(createPerson);
