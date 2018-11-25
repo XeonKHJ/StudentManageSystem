@@ -4,19 +4,46 @@
 <html>
 
 <head>
-<script>
-		function register()
+	<meta charset="utf-8">
+	<script>
+	function Register()
+	{
+		var form = document.getElementById("registerForm");
+		var xmlhttp;
+		xmlhttp=new XMLHttpRequest();
+		document.getElementById("registerInfo").innerHTML=xmlhttp.responseText;
+		xmlhttp.onreadystatechange=function()
 		{
-			//调用Register.java中的类完成该功能。
+			if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+				document.getElementById("registerInfo").innerHTML=xmlhttp.responseText;
+			}
 		}
-		//待完成：注册功能
+		var userId = document.getElementById("userId").value;
+		var password = document.getElementById("password").value;
+		var name = document.getElementById("name").value;
+		var occupation = document.getElementById("occupation").value;
+		var birthday = document.getElementById("birthday").value;
+		var enterYear = document.getElementById("enterYear").value;
+		window.alert(enterYear);
+		
+		var registerString = "RegisterCheck?userId=" + userId + 
+							 "&password=" + password +
+							 "&name=" + name +
+							 "&occupation=" + occupation +
+							 "&birthday=" + birthday +
+							 "&enterYear=" + enterYear;
+		
+		xmlhttp.open("GET", registerString ,true);
+		xmlhttp.send();
+	}
 	</script>
 <meta charset="UTF-8">
 <title>注册</title>
 </head>
 
 <body>
-	<form action="RegisterCheck" name="registerForm" method="post">
+	<form name="registerForm" method="get">
 		<table>
 			<tr>
 				<td><label for="userId">ID:&nbsp;</label></td>
@@ -36,13 +63,14 @@
 			</tr>
 			<tr>
 				<td><label for="sex">性别:&nbsp;</label></td>
-				<td><input type="radio" name="sex" value="male" checked tabindex="4">男
-					<br> <input type="radio" name="sex" value="female" tabindex="5">女</td>
+				<td><input type="radio" name="sex" value="male" checked
+					tabindex="4">男 <br> <input type="radio" name="sex"
+					value="female" tabindex="5">女</td>
 
 			</tr>
 			<tr>
 				<td><label for="occupation">类型:&nbsp;</label></td>
-				<td><select name="occupation" tabindex="6">
+				<td><select name="occupation" id="occupation" tabindex="6">
 						<option value="student">学生</option>
 						<option value="teacher">老师</option>
 				</select></td>
@@ -59,11 +87,14 @@
 			</tr>
 			<tr>
 				<td colspan="2"><input name="submitBtn" tabindex="9"
-					class="blue-button" type="submit" onclick=""
+					class="blue-button" type="button" onclick="Register()"
 					style="margin-left: 7px; margin-right: 7px" value="注册"></td>
 			</tr>
 		</table>
 	</form>
+	<div>
+		<p id="registerInfo"></p>
+	</div>
 </body>
 
 </html>

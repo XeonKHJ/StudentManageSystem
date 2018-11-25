@@ -32,24 +32,28 @@ public class RegisterCheck extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8"); 
 		PrintWriter out = response.getWriter();
 		String occupation = request.getParameter("occupation");
 		String id = request.getParameter("userId");
 		String name = request.getParameter("name");
 		String password = request.getParameter("password");
 		String birthday = request.getParameter("birthday");
-		String sex = request.getParameter("sex") == "male" ? "男": "女";
+		String sex = request.getParameter("sex") == "male" ? "女": "男";
 		String enterYear = request.getParameter("enterYear");
+
 		try {
 			DatabaseConnection dbConnectionInfo = new DatabaseConnection("StudentManagementAdmin", "admin", "XEON-DELL7460", "StudentsManagement");
 			String createPerson = "INSERT INTO " + occupation + "s VALUES ('" + id + "', '" + name + "', '" + sex + "', '" + birthday + "', '" + enterYear +"')";
 			Connection dbConnection = dbConnectionInfo.getCon();
 			Statement stat = dbConnection.createStatement();
 			int result = stat.executeUpdate(createPerson);
+			response.encodeRedirectURL("/Login.jsp");
 		} catch (SQLServerException e) {
-			out.println("<p>网站错误</p>");
+			out.println("<p style=\"color:red\">注册失败</p>");
 		} catch (SQLException e) {
-			out.println("<p>注册失败</p>");
+			out.println("<p>登陆失败</p>");
 			e.printStackTrace();
 		}
 	}

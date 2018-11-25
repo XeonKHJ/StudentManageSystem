@@ -67,7 +67,7 @@ body {
 			style="position: absolute; top: 15px; left: 22px; width: 301px; height: 65px;">
 			<h1>学生信息管理系统</h1>
 		</div>
-		<form action="Login" name="loginForm" method="post">
+		<form name="loginForm" method="post">
 			<table class="logintable">
 				<tbody>
 					<tr>
