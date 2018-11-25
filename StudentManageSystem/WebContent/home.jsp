@@ -69,7 +69,7 @@ function loadXMLDoc()
 	</div>
 
 	<div id="nav">
-		<a onclick="">主页</a><br> <a>个人信息</a><br> Tokyo<br>
+		<a href="javascript:loadXMLDoc();">主页</a><br> <a>学籍信息</a><br><a>课程列表</a><br>
 	</div>
 
 	<div id="section">
