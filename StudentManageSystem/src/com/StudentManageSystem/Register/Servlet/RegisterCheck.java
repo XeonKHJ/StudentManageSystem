@@ -50,6 +50,7 @@ public class RegisterCheck extends HttpServlet {
 			Statement stat = dbConnection.createStatement();
 			int result = stat.executeUpdate(createPerson);
 			response.encodeRedirectURL("/Login.jsp");
+			out.print("alert(0);");
 		} catch (SQLServerException e) {
 			out.println("<p style=\"color:red\">注册失败</p>");
 		} catch (SQLException e) {

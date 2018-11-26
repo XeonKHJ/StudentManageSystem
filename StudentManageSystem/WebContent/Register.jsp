@@ -25,7 +25,6 @@
 		var occupation = document.getElementById("occupation").value;
 		var birthday = document.getElementById("birthday").value;
 		var enterYear = document.getElementById("enterYear").value;
-		window.alert(enterYear);
 		
 		var registerString = "RegisterCheck?userId=" + userId + 
 							 "&password=" + password +

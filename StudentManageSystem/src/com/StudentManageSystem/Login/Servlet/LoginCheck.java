@@ -50,6 +50,7 @@ public class LoginCheck extends HttpServlet implements Filter {
         "<tr bgcolor=\"#949494\">\n" +
         "<th>Header 名称n</th><th>Header 值</th>\n"+
         "</tr>\n");
+        out.println("正在登录……");
         String userId = request.getParameter("userId");
         String password = request.getParameter("password");
 		try {
@@ -59,6 +60,7 @@ public class LoginCheck extends HttpServlet implements Filter {
 		} catch (SQLServerException e) {
 			out.println("<p>账号密码错误</p>");
 		}
+		
 	}
 
 	/**
