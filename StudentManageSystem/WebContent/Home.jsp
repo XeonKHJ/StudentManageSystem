@@ -5,20 +5,13 @@
 <head>
 <meta charset="utf-8">
 <script>
-function loadXMLDoc()
+function WelcomePage()
 {
-	var xmlhttp;
-	xmlhttp=new XMLHttpRequest();
-
-	xmlhttp.onreadystatechange=function()
-	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
-		{
-			document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
-		}
-	}
-	xmlhttp.open("GET","abc.txt",true);
-	xmlhttp.send();
+	document.getElementById("maininfo").src = "welcome.jsp";
+}
+function PersonalInformationPage()
+{
+	document.getElementById("maininfo").src = "PersonalInfomation.jsp";
 }
 </script>
 
@@ -69,11 +62,11 @@ function loadXMLDoc()
 	</div>
 
 	<div id="nav">
-		<a href="javascript:loadXMLDoc();">主页</a><br> <a>学籍信息</a><br><a>课程列表</a><br>
+		<a href="javascript:WelcomePage();">主页</a><br> <a href="javascript:PersonalInformationPage();">学籍信息</a><br><a>课程列表</a><br>
 	</div>
 
 	<div id="section">
-		<iframe id="maininfo" src="Login.jsp"></iframe>
+		<iframe id="maininfo" src="welcome.jsp"></iframe>
 	</div>
 
 	<div id="footer">康宏嘉作品</div>

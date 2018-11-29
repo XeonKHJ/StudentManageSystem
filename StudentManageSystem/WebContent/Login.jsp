@@ -56,6 +56,36 @@ body {
 	border-radius: 5px;
 }
 </style>
+		<script>
+		function loginCheck()
+		{
+			var xmlhttp;
+			xmlhttp=new XMLHttpRequest();
+
+			var userId = document.getElementById("userId").value;
+			var password = document.getElementById("password").value;
+			var result;
+			
+			xmlhttp.onreadystatechange=function()
+			{
+				if (xmlhttp.readyState==4 && xmlhttp.status==200)
+				{
+					result = xmlhttp.responseText;
+					
+					if(result == 1){
+						document.getElementById("LoginFaild").innerHTML="登陆成功";
+						window.location.href = "Home.jsp";
+						}
+					else{
+						document.getElementById("LoginFaild").innerHTML="登陆失败，请检查用户名和密码！";
+					}
+				}
+			}
+			var inputParameter = "Login?userId=" + userId + "&password=" + password;
+			xmlhttp.open("GET",inputParameter,true);
+			xmlhttp.send();
+		}
+		</script>
 </head>
 <body>
 	<%
@@ -94,33 +124,15 @@ body {
 					</tr>
 					<tr>
 						<td colspan="2"><input name="submitBtn" tabindex="6"
-							class="blue-button" type="submit" onclick="loginCheck()"
+							class="blue-button" type="button" onclick="loginCheck()"
 							style="margin-left: 7px; margin-right: 7px" value="登录"></td>
+					</tr>
+										<tr>
+						<td colspan="2"><p id="LoginFaild" style="color:red"></p></td>
 					</tr>
 				</tbody>
 			</table>
 		</form>
-		<script>
-		function loginCheck()
-		{
-			var xmlhttp;
-			xmlhttp=new XMLHttpRequest();
-
-			var userId = document.getElementById("userId").value;
-			var password = document.getElementById("password").value;
-
-			xmlhttp.onreadystatechange=function()
-			{
-				if (xmlhttp.readyState==4 && xmlhttp.status==200)
-				{
-					document.getElementById("myDiv").innerHTML=xmlhttp.responseText;
-				}
-			}
-			var inputParameter = "Login?userId=" + userId + "&password=" + password;
-			xmlhttp.open("GET",inputParamtere,true);
-			xmlhttp.send();
-		}
-		</script>
 	</div>
 </body>
 </html>
