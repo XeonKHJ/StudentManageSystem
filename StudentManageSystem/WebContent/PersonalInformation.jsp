@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="javax.servlet.*" import="com.StudentManageSystem.bean.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +7,14 @@
 <link id="jquery_theme_link" href="jquery-ui.css?s2j=3.6.1" rel="stylesheet" type="text/css">
 <link id="beangle_theme_link" href="beangle-ui,colorbox,chosen.css" rel="stylesheet" type="text/css">
 <title>个人信息</title>
+	<%
+		Cookie[] cookies = request.getCookies();
+		int userNo, pwNo;
+		for(userNo = 0; userNo < cookies.length && !cookies[userNo].getName().equals("userId") ; ++userNo);
+		for(pwNo = 0; pwNo < cookies.length && !cookies[pwNo].getName().equals("password"); ++pwNo);
+		DatabaseConnection con = new DatabaseConnection(cookies[userNo].getValue(), cookies[pwNo].getValue(), "XEON-DELL7460", "StudentsManagement");
+		
+	%>
 </head>
 <body>
 	<div

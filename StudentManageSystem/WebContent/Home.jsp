@@ -13,6 +13,10 @@ function PersonalInformationPage()
 {
 	document.getElementById("maininfo").src = "PersonalInformation.jsp";
 }
+function AddCoursePage()
+{
+	document.getElementById("maininfo").src = "AddCourse.jsp";
+}
 </script>
 
 <style>
@@ -62,7 +66,11 @@ function PersonalInformationPage()
 	</div>
 
 	<div id="nav">
-		<a href="javascript:WelcomePage();">主页</a><br> <a href="javascript:PersonalInformationPage();">学籍信息</a><br><a>课程列表</a><br>
+		<a href="javascript:WelcomePage();">主页</a><br> 
+		<a href="javascript:PersonalInformationPage();">学籍信息</a><br>
+		<a href="javascript:ListCoursesPage();">课程列表</a><br>
+		<a href="javascript:AddStudentPage();">添加学生</a><br>
+		<a href="javascript:AddCoursePage();">添加课程</a><br>
 	</div>
 
 	<div id="section">
