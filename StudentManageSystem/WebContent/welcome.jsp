@@ -4,12 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>欢迎</title>
 </head>
 <body>
-	<script>
-		
-	</script>
 	<%
 		Cookie[] cookies = request.getCookies();
 		int userNo, pwNo;

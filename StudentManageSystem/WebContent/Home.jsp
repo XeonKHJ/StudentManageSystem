@@ -11,7 +11,7 @@ function WelcomePage()
 }
 function PersonalInformationPage()
 {
-	document.getElementById("maininfo").src = "PersonalInfomation.jsp";
+	document.getElementById("maininfo").src = "PersonalInformation.jsp";
 }
 </script>
 
@@ -70,6 +70,5 @@ function PersonalInformationPage()
 	</div>
 
 	<div id="footer">康宏嘉作品</div>
-
 </body>
 </html>
