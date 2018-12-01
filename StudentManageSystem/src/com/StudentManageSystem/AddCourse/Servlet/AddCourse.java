@@ -34,8 +34,6 @@ public class AddCourse extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
 		//通过Cookie找到用户名和密码
 		Cookie[] cookies = request.getCookies();
 		int userNo, pwNo;
@@ -47,6 +45,10 @@ public class AddCourse extends HttpServlet {
 		String addACourseSql = "INSERT INTO Courses VALUES ('" + courseId + "', '" + courseName + "')";
 		int result = 0;
 		try {
+			if(courseId == "null")
+			{
+				throw new SQLException();
+			}
 			DatabaseConnection dbConnectionInfo = new DatabaseConnection(cookies[userNo].getValue(), cookies[pwNo].getValue(), "XEON-DELL7460", "StudentsManagement");
 			Connection con = dbConnectionInfo.getCon();
 			Statement stat = con.createStatement();
