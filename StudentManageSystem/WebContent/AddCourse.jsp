@@ -73,13 +73,9 @@ function RefreshTheCoursesTable()
 				<td><input name="courseId" tabindex="1" title="请输入课程ID"
 					id="courseId" style="width: 105px;" type="text" maxlength="40"
 					value=""></td>
-			</tr>
-			<tr>
 				<td><label for="courseName">课程名：&nbsp;</label></td>
 				<td><input name="courseName" tabindex="2" id="courseName"
 					style="width: 105px;" type="text" maxlength="40" /></td>
-			</tr>
-			<tr>
 				<td colspan="2"><input name="submitBtn" tabindex="9"
 					class="blue-button" type="button" onclick="AddCourse()"
 					style="margin-left: 7px; margin-right: 7px" value="添加"></td>
