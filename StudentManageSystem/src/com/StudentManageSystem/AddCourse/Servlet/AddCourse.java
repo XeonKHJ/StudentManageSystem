@@ -2,7 +2,6 @@ package com.StudentManageSystem.AddCourse.Servlet;
 
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -45,7 +44,7 @@ public class AddCourse extends HttpServlet {
 		String addACourseSql = "INSERT INTO Courses VALUES ('" + courseId + "', '" + courseName + "')";
 		int result = 0;
 		try {
-			if(courseId == "null")
+			if(courseId == "")
 			{
 				throw new SQLException();
 			}

@@ -88,10 +88,6 @@ body {
 		</script>
 </head>
 <body>
-	<%
-	    	DatabaseConnection dbConnectionInfo = new DatabaseConnection("20162430306", "0978286092", "XEON-DELL7460", "StudentsManagement");
-	    	Connection dbConnection = dbConnectionInfo.getCon();
-        %>
 	<div class="logindiv">
 		<div
 			style="position: absolute; top: 15px; left: 22px; width: 301px; height: 65px;">

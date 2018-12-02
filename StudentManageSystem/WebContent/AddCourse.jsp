@@ -31,6 +31,7 @@ function AddCourse()
 			else{
 				document.getElementById("addCourseResult").innerHTML = "添加失败！"
 			}
+			RefreshTheCoursesTable();
 		}
 	}
 	var courseId = document.getElementById("courseId").value;
@@ -45,40 +46,30 @@ function AddCourse()
 
 function RefreshTheCoursesTable()
 {
-	<%
-	Connection con = databaseConnection.getCon();
-	Statement stat = con.createStatement();
-	ResultSet rs = stat.executeQuery(countCoursesSql);
-	int courseCount = rs.getInt("courseCount");
-	rs = stat.executeQuery(queryCourses);
-	
-	%>
-	var courseCount = <%=courseCount%>;
-	for(var i = 0; i < courseCount; ++i){
-        var newTr=tab.insertRow(i + 1);            
-        var idTd=newTr.insertCell(0);           
-        var nameTd=newTr.insertCell(1);            
-        var genderTd=newTr.insertCell(2);            
-        idTd.innerHTML = <%=rs.getString("Cno")%>;           
-        nameTd.innerHTML = <%=rs.getString("Cname")%>;             
-        <%rs.next();%>
+	var xmlhttp;
+	xmlhttp=new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		{
+			//document.getElementById("registerInfo").innerHTML=xmlhttp.responseText;
+			document.getElementById("courses").innerHTML = xmlhttp.responseText;
+		}
 	}
-	var tab=$("#courses");
+	
+	xmlhttp.open("GET", "RefreshCourses" ,true);
+	xmlhttp.send();
 }
 </script>
 
 </head>
 <body>
-	<table border="1" id="courses">
-		<tr>
-			<th>课程编号</th>
-			<th>课程名</th>
-		</tr>
-	</table>
+	<script>RefreshTheCoursesTable();</script>
+	<table border="1" id="courses"></table>
 	<form name="addCourseForm" method="get">
 		<table>
 			<tr>
-				<td><label for="courseId">ID:&nbsp;</label></td>
+				<td><label for="courseId">课程编号:&nbsp;</label></td>
 				<td><input name="courseId" tabindex="1" title="请输入课程ID"
 					id="courseId" style="width: 105px;" type="text" maxlength="40"
 					value=""></td>
