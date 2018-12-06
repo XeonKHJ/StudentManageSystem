@@ -1,110 +1,109 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.sql.*"
-	import="com.StudentManageSystem.bean.*"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>添加学生</title>
-<%
-	Cookie[] cookies = request.getCookies();
-	int userNo, pwNo;
-	for(userNo = 0; userNo < cookies.length && !cookies[userNo].getName().equals("userId") ; ++userNo);
-	for(pwNo = 0; pwNo < cookies.length && !cookies[pwNo].getName().equals("password"); ++pwNo);
-	DatabaseConnection databaseConnection = new DatabaseConnection(cookies[userNo].getValue(), cookies[pwNo].getValue(), "XEON-DELL7460", "StudentsManagement");
-	String countStudentsSql = "SELECT COUNT(*) as StudentCount FROM COURSES";
-	String queryStudents = "SELECT * FROM COURSES";
-%>
+<meta charset="utf-8">
 <script>
-function AddStudent()
-{
-	var xmlhttp;
-	xmlhttp=new XMLHttpRequest();
-	xmlhttp.onreadystatechange=function()
+	function Register()
 	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
+		var form = document.getElementById("registerForm");
+		var xmlhttp;
+		xmlhttp=new XMLHttpRequest();
+		document.getElementById("registerInfo").innerHTML=xmlhttp.responseText;
+		xmlhttp.onreadystatechange=function()
 		{
-			result = xmlhttp.responseText;
-			//document.getElementById("registerInfo").innerHTML=xmlhttp.responseText;
-			if(result == 1){
-				document.getElementById("addStudentResult").innerHTML = "添加学生成功";
+			if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+				document.getElementById("registerInfo").innerHTML=xmlhttp.responseText;
 			}
-			else{
-				document.getElementById("addStudentResult").innerHTML = "添加失败！"
-			}
-			RefreshTheStudentsTable();
 		}
+		var userId = document.getElementById("userId").value;
+		var password = document.getElementById("password").value;
+		var name = document.getElementById("name").value;
+		var occupation = document.getElementById("occupation").value;
+		var birthday = document.getElementById("birthday").value;
+		var enterYear = document.getElementById("enterYear").value;
+		
+		var registerString = "RegisterCheck?userId=" + userId + 
+							 "&password=" + password +
+							 "&name=" + name +
+							 "&occupation=" + occupation +
+							 "&birthday=" + birthday +
+							 "&enterYear=" + enterYear;
+		
+		xmlhttp.open("GET", registerString ,true);
+		xmlhttp.send();
 	}
-	var studentId = document.getElementById("studentId").value;
-	var studentName = document.getElementById("studentName").value;
-	var enterYear = document.getElementById("enterYear").value;
-	
-	
-	var addStudentString = "AddStudent?studentId=" + studentId + 
-						 "&studentName=" + studentName;
-	
-	xmlhttp.open("GET", addStudentString ,true);
-	xmlhttp.send();
-}
-
-function RefreshTheStudentsTable()
-{
-	var xmlhttp;
-	xmlhttp=new XMLHttpRequest();
-	xmlhttp.onreadystatechange=function()
-	{
-		if (xmlhttp.readyState==4 && xmlhttp.status==200)
-		{
-			//document.getElementById("registerInfo").innerHTML=xmlhttp.responseText;
-			document.getElementById("students").innerHTML = xmlhttp.responseText;
-		}
-	}
-	
-	xmlhttp.open("GET", "RefreshStudents" ,true);
-	xmlhttp.send();
-}
-
-function UploadIcon()
-{
-	 
-}
-</script>
-
+	</script>
+<meta charset="UTF-8">
+<title>注册</title>
 </head>
+
 <body>
-	<script>RefreshTheStudentsTable();</script>
-	<table border="1" id="students"></table>
-	<form name="addStudentForm" method="get">
+	<form name="registerForm" method="get">
 		<table>
 			<tr>
-				<td><label for="studentId">学生编号:&nbsp;</label></td>
-				<td><input name="studentId" tabindex="1" title="请输入学生ID"
-					id="studentId" style="width: 105px;" type="text" maxlength="40"
+				<td><label for="userId">ID：&nbsp;</label></td>
+				<td><input name="userId" tabindex="1" title="请输就用户名"
+					id="userId" style="width: 105px;" type="text" maxlength="40"
 					value=""></td>
-				<td><label for="studentName">学生名：&nbsp;</label></td>
-				<td><input name="studentName" tabindex="2" id="studentName"
-					style="width: 105px;" type="text" maxlength="40" /></td>
-				<td><label for="birthday">生日:&nbsp;</label></td>
-				<td><input name="birthday" tabindex="3" id="birthday"
-					style="width: 105px;" type="date" maxlength="40" /></td>
-				<td><label for="enterYear">入学年份：&nbsp;</label></td>
-				<td><input name="enterYear" tabindex="4" id="enterYear"
-					style="width: 105px;" type="text" maxlength="40" /></td>
-				<td><label for="enterYear">头像：&nbsp;</label></td>
-				<td colspan="2"><input name="submitBtn" tabindex="5"
-					class="blue-button" type="file"
-					style="margin-left: 7px; margin-right: 7px" value="上传头像"></td>
-				<td colspan="2"><input name="submitBtn" tabindex="6"
-					class="blue-button" type="button" onclick="UploadIcon()"
-					style="margin-left: 7px; margin-right: 7px" value="上传"></td>
-				<td colspan="2"><input name="submitBtn" tabindex="6"
-					class="blue-button" type="button" onclick="AddStudent()"
-					style="margin-left: 7px; margin-right: 7px" value="添加"></td>
 			</tr>
 			<tr>
-				<td><p id="addStudentResult" style="color: red"></p></td>
+				<td><label for="password">密 码：&nbsp;</label></td>
+				<td><input name="password" tabindex="2" id="password"
+					style="width: 105px;" type="password" maxlength="40" /></td>
+			</tr>
+			<tr>
+				<td><label for="name">姓名：&nbsp;</label></td>
+				<td><input name="name" tabindex="3" id="name"
+					style="width: 105px;" type="text" maxlength="40" /></td>
+			</tr>
+			<tr>
+				<td><label for="sex">性别：&nbsp;</label></td>
+				<td><input type="radio" name="sex" value="male" checked
+					tabindex="4">男 <br> <input type="radio" name="sex"
+					value="female" tabindex="5">女</td>
+
+			</tr>
+			<tr>
+				<td><label for="occupation">类型：&nbsp;</label></td>
+				<td><select name="occupation" id="occupation" tabindex="6">
+						<option value="student">学生</option>
+						<option value="teacher">老师</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td><label for="birthday">生日：&nbsp;</label></td>
+				<td><input name="birthday" tabindex="7" id="birthday"
+					style="width: 105px;" type="date" maxlength="40" /></td>
+			</tr>
+			<tr>
+				<td><label for="enterYear">入学年份：&nbsp;</label></td>
+				<td><input name="enterYear" tabindex="8" id="enterYear"
+					style="width: 105px;" type="text" maxlength="40" /></td>
+			</tr>
+						<tr>
+				<td><label for="enterYear">学院：&nbsp;</label></td>
+				<td><input name="enterYear" tabindex="8" id="enterYear"
+					style="width: 105px;" type="text" maxlength="40" /></td>
+			</tr>
+						<tr>
+				<td><label for="enterYear">专业：&nbsp;</label></td>
+				<td><input name="enterYear" tabindex="8" id="enterYear"
+					style="width: 105px;" type="text" maxlength="40" /></td>
+			</tr>
+			<tr>
+				<td colspan="2"><input name="submitBtn" tabindex="9"
+					class="blue-button" type="button" onclick="Register()"
+					style="margin-left: 7px; margin-right: 7px" value="注册"></td>
 			</tr>
 		</table>
 	</form>
+	<div>
+		<p id="registerInfo"></p>
+	</div>
 </body>
+
 </html>

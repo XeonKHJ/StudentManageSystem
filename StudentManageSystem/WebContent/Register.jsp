@@ -4,8 +4,8 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<script>
+<meta charset="utf-8">
+<script>
 	function Register()
 	{
 		var form = document.getElementById("registerForm");

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="javax.servlet.*" import="com.StudentManageSystem.bean.*"%>
+	pageEncoding="UTF-8" import="javax.servlet.*" import="com.StudentManageSystem.bean.*" import="java.sql.*"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,8 +12,20 @@
 		int userNo, pwNo;
 		for(userNo = 0; userNo < cookies.length && !cookies[userNo].getName().equals("userId") ; ++userNo);
 		for(pwNo = 0; pwNo < cookies.length && !cookies[pwNo].getName().equals("password"); ++pwNo);
-		DatabaseConnection con = new DatabaseConnection(cookies[userNo].getValue(), cookies[pwNo].getValue(), "XEON-DELL7460", "StudentsManagement");
-		
+		DatabaseConnection dbConnection = new DatabaseConnection(cookies[userNo].getValue(), cookies[pwNo].getValue(), "XEON-DELL7460", "StudentsManagement");
+		String sql = "SELECT * FROM Students WHERE Sno = '" + "20162430306" + "'";
+		Connection con = dbConnection.getCon();
+		Statement stat = con.createStatement();
+		ResultSet rs = stat.executeQuery(sql);
+		rs.next();
+		String sNo = rs.getString("Sno");
+		String sName = rs.getString("Sname");
+		String sSex = rs.getString("Ssex");
+		String sBirthday = rs.getString("Sbirthday");
+		String sEnterYear = rs.getString("SenterYear");
+		String sIconPath = rs.getString("SiconPath");
+		String sSchool = rs.getString("Sschool");
+		String sMajor = rs.getString("Smajor");
 	%>
 </head>
 <body>
@@ -31,97 +43,37 @@
 				</tr>
 				<tr>
 					<td width="25%" class="title" style="width: 18%">学号：</td>
-					<td width="25%">20162430306</td>
+					<td width="25%"><%= sNo%></td>
 					<td width="25%" class="title" style="width: 18%">姓名：</td>
-					<td>康宏嘉</td>
+					<td><%=sName %></td>
 					<td width="11%" id="photoImg" rowspan="5"><img width="80"
-						height="110" title="康宏嘉" alt="康宏嘉"
-						src="/eams/showSelfAvatar.action?user.name=20162430306"></td>
+						height="110" title="<%=sName %>" alt="<%=sName %>"
+						src="<%=sIconPath%>"></td>
 				</tr>
 				<tr>
-					<td class="title" style="width: 18%">英文名：</td>
-					<td>Kang Hongjia</td>
 					<td class="title" style="width: 18%">性别：</td>
-					<td>男</td>
+					<td><%=sSex %></td>
 				</tr>
 				<tr>
 					<td class="title" style="width: 18%">年级：</td>
-					<td>2016</td>
-					<td class="title" style="width: 18%">学制：</td>
-					<td>4</td>
+					<td><%= sEnterYear %></td>
 				</tr>
 				<tr>
-					<td class="title" style="width: 18%">项目：</td>
-					<td>本科</td>
-					<td class="title" style="width: 18%">学历层次：</td>
-					<td>本科</td>
-				</tr>
-				<tr>
-					<td class="title" style="width: 18%">学生类别：</td>
-					<td>普通本科生</td>
 					<td class="title" style="width: 18%">院系：</td>
-					<td>信息工程学院[24]</td>
+					<td><%=sSchool %></td>
 				</tr>
 				<tr>
 					<td class="title" style="width: 18%">专业：</td>
-					<td>计算机科学与技术</td>
-					<td class="title" style="width: 18%">方向：</td>
-					<td></td>
-					<td width="11%" id="photoImg" rowspan="5"><img width="80"
-						height="110" title="康宏嘉" alt="康宏嘉"
-						src="/eams/avatar/user.action?user.name=20162430306&amp;status=inSchool">
-					</td>
+					<td><%=sMajor %></td>
 				</tr>
 				<tr>
 				</tr>
 				<tr>
 					<td class="title" style="width: 18%">入校时间：</td>
-					<td>2016-08-27</td>
-					<td class="title" style="width: 18%">毕业时间：</td>
-					<td>2020-07-01</td>
-				</tr>
-				<tr>
-					<td class="title" style="width: 18%">行政管理院系：</td>
-					<td>信息工程学院[24]</td>
-					<td class="title" style="width: 18%">学习形式：</td>
-					<td>普通全日制</td>
-				</tr>
-				<tr>
-					<td class="title" style="width: 18%">是否在籍：</td>
-					<td>是</td>
-					<td class="title" style="width: 18%">是否在校：</td>
-					<td>是</td>
-				</tr>
-				<tr>
-					<td class="title" style="width: 18%">所属校区：</td>
-					<td>新校区</td>
-					<td class="title" style="width: 18%">所属班级：</td>
-					<td>计算机科学与技术2016级4班</td>
-					<td width="11%" id="photoImg" rowspan="5"><img width="80"
-						height="110" title="康宏嘉" alt="康宏嘉"
-						src="/eams/avatar/user.action?user.name=20162430306&amp;status=finishSchool">
-					</td>
-				</tr>
-				<tr>
-					<td class="title" style="width: 18%">学籍生效日期：</td>
-					<td>2016-08-27</td>
-					<td class="title" style="width: 18%">是否有学籍：</td>
-					<td>是</td>
-				</tr>
-				<tr>
-					<td class="title" style="width: 18%">学籍状态：</td>
-					<td>默认</td>
-					<td class="title" style="width: 18%"></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td class="title" style="width: 18%">备注：</td>
-					<td colspan="3"></td>
+					<td><%= sEnterYear %></td>
 				</tr>
 			</tbody>
 		</table>
-		<script>
-</script>
 	</div>
 </body>
 </html>

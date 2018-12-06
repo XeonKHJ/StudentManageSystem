@@ -42,8 +42,7 @@ public class LoginCheck extends HttpServlet implements Filter {
 		response.setContentType("text/html;charset=UTF-8");
 		
 		PrintWriter out = response.getWriter();
-		String title = "正在登陆……";
-		String docType = "<!DOCTYPE html> \n";
+		//String docType = "<!DOCTYPE html> \n";
         /*out.println(docType +
         "<html>\n" +
         "<head><meta charset=\"utf-8\"><title>" + title + "</title></head>\n"+
@@ -56,16 +55,38 @@ public class LoginCheck extends HttpServlet implements Filter {
         //out.println("正在登录……");
         String userId = request.getParameter("userId");
         String password = request.getParameter("password");
+        String occupation = request.getParameter("occupation");
 		try {
-			DatabaseConnection dbConnectionInfo = new DatabaseConnection(userId, password, "XEON-DELL7460", "StudentsManagement");
-			//Connection dbConnection = dbConnectionInfo.getCon();
-			dbConnectionInfo.getCon();
+			if(occupation.equals("admin"))
+			{
+				new DatabaseConnection(userId, password, "XEON-DELL7460", "StudentsManagement");
+				//Connection dbConnection = dbConnectionInfo.getCon();
+				Cookie occuCookie = new Cookie("occupation", occupation);
+				Cookie idCookie = new Cookie("userId", userId);
+				Cookie pwCookie = new Cookie("password", password);
+				response.addCookie(idCookie);
+				response.addCookie(pwCookie);
+				response.addCookie(occuCookie);
+			}
+			else if(occupation.equals("student"))
+			{
+				DatabaseConnection dbConnectionInfo = new DatabaseConnection("StudentManagementStudent", "1234", "XEON-DELL7460", "StudentsManagement");
+				Connection con = dbConnectionInfo.getCon();
+				Statement stat = con.createStatement();
+				ResultSet result = stat.executeQuery("SELECT SPassword FROM Students WHERE Sno = '" + userId + "' AND SPassword = '" + password+"'");
+				if(!result.next())
+				{
+					throw new Exception("账号错误！");
+				}
+			}
+			Cookie occuCookie = new Cookie("occupation", occupation);
 			Cookie idCookie = new Cookie("userId", userId);
 			Cookie pwCookie = new Cookie("password", password);
 			response.addCookie(idCookie);
 			response.addCookie(pwCookie);
+			response.addCookie(occuCookie);
 			out.println("1");
-		} catch (SQLServerException e) {
+		} catch (Exception e) {
 			out.println("登陆失败！请检查你的用户名和密码！");
 		}
 	}
@@ -74,7 +95,6 @@ public class LoginCheck extends HttpServlet implements Filter {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 	

@@ -6,6 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>学生信息管理系统：登陆界面</title>
+	<%
+		Cookie[] cookies = request.getCookies();
+		int userNo;
+		for(userNo = 0; userNo < cookies.length && !cookies[userNo].getName().equals("userId") ; ++userNo);
+		//for(pwNo = 0; pwNo < cookies.length && !cookies[pwNo].getName().equals("password"); ++pwNo);
+		if(userNo != cookies.length)
+		{
+			response.sendRedirect("Home.jsp");
+		}
+	%>
 <style>
 body {
 	background-color: #0A96E1;
@@ -56,7 +66,7 @@ body {
 	border-radius: 5px;
 }
 </style>
-		<script>
+<script>
 		function loginCheck()
 		{
 			var xmlhttp;
@@ -64,6 +74,11 @@ body {
 
 			var userId = document.getElementById("userId").value;
 			var password = document.getElementById("password").value;
+			var occupation = document.getElementById("occupation").value;
+			var rememberPassword = "false";
+			if(document.getElementById("rememberPassword").checked){
+				rememberPassword = "true";
+			}
 			var result;
 			
 			xmlhttp.onreadystatechange=function()
@@ -81,7 +96,7 @@ body {
 					}
 				}
 			}
-			var inputParameter = "Login?userId=" + userId + "&password=" + password;
+			var inputParameter = "Login?userId=" + userId + "&password=" + password + "&occupation=" + occupation + "&rememberPassword=" + rememberPassword;
 			xmlhttp.open("GET",inputParameter,true);
 			xmlhttp.send();
 		}
@@ -101,7 +116,7 @@ body {
 					</tr>
 					<tr>
 						<td><label for="userId">用户名:&nbsp;</label></td>
-						<td><input name="userId" tabindex="1" title="请输就用户名"
+						<td><input name="userId" tabindex="1" title="请输入用户名"
 							id="userId" style="width: 105px;" type="text" maxlength="40"
 							value=""></td>
 					</tr>
@@ -110,6 +125,17 @@ body {
 						<td><input name="password" tabindex="2" id="password"
 							style="width: 105px;" type="password" maxlength="40" /> <input
 							name="encodedPassword" type="hidden" value="" /></td>
+					</tr>
+					<tr>
+						<td><label for="occupation">类型:&nbsp;</label></td>
+						<td><select name="occupation" id="occupation" tabindex="6">
+								<option value="student">学生</option>
+								<option value="admin">管理员</option>
+						</select></td>
+					</tr>
+										<tr>
+						<td></td>
+						<td><input type="checkbox" id="rememberPassword">记住密码</td>
 					</tr>
 					<tr>
 						<td></td>
@@ -123,8 +149,8 @@ body {
 							class="blue-button" type="button" onclick="loginCheck()"
 							style="margin-left: 7px; margin-right: 7px" value="登录"></td>
 					</tr>
-										<tr>
-						<td colspan="2"><p id="LoginFaild" style="color:red"></p></td>
+					<tr>
+						<td colspan="2"><p id="LoginFaild" style="color: red"></p></td>
 					</tr>
 				</tbody>
 			</table>
