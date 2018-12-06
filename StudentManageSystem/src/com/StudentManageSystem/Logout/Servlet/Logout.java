@@ -31,6 +31,16 @@ public class Logout extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Cookie[] cookies = request.getCookies();
 		String path = request.getContextPath();
+		Cookie userId= new Cookie("userId", "");
+		userId.setMaxAge(0);
+		Cookie password = new Cookie("password", "");
+		password.setMaxAge(0);
+		Cookie occupation = new Cookie("occupation", "");
+		occupation.setMaxAge(0);
+		response.addCookie(userId);
+		response.addCookie(password);
+		response.addCookie(occupation);
+		/*
 		for(Cookie cookie : cookies)
 		{
 			if(cookie.getName().equals("userId") || cookie.getName().equals("password") || cookie.getName().equals("occupation"))
@@ -39,11 +49,13 @@ public class Logout extends HttpServlet {
 				cookie.setMaxAge(0);
 				response.addCookie(cookie);
 			}
-		}
-		cookies = request.getCookies();
+		}*/
+		//cookies = request.getCookies();
+		
 		/*
 		RequestDispatcher dispatcher = request.getRequestDispatcher("Login.jsp"); 
 		dispatcher.forward(request, response); */
+		response.sendRedirect("Login.jsp");
 	}
 
 	/**
