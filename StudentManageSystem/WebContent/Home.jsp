@@ -63,6 +63,7 @@ function AddCoursePage()
 
 	<div id="header">
 		<a href="Logout" style="float: right; font: 5px" >退出登录</a>
+		<a href="ChangePassword.jsp" style="float:right; font:5px">修改密码</a>
 		<h1>学生信息管理系统</h1>
 	</div>
 

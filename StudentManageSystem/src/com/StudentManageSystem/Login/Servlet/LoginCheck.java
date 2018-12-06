@@ -3,6 +3,7 @@ package com.StudentManageSystem.Login.Servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+import java.lang.Integer.*;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -42,31 +43,14 @@ public class LoginCheck extends HttpServlet implements Filter {
 		response.setContentType("text/html;charset=UTF-8");
 		
 		PrintWriter out = response.getWriter();
-		//String docType = "<!DOCTYPE html> \n";
-        /*out.println(docType +
-        "<html>\n" +
-        "<head><meta charset=\"utf-8\"><title>" + title + "</title></head>\n"+
-        "<body bgcolor=\"#f0f0f0\">\n" +
-        "<h1 align=\"center\">" + title + "</h1>\n" +
-        "<table width=\"100%\" border=\"1\" align=\"center\">\n" +
-        "<tr bgcolor=\"#949494\">\n" +
-        "<th>Header 名称n</th><th>Header 值</th>\n"+
-        "</tr>\n");*/
-        //out.println("正在登录……");
         String userId = request.getParameter("userId");
         String password = request.getParameter("password");
         String occupation = request.getParameter("occupation");
+        String rememberPassword = request.getParameter("rememberPassword");
 		try {
 			if(occupation.equals("admin"))
 			{
 				new DatabaseConnection(userId, password, "XEON-DELL7460", "StudentsManagement");
-				//Connection dbConnection = dbConnectionInfo.getCon();
-				Cookie occuCookie = new Cookie("occupation", occupation);
-				Cookie idCookie = new Cookie("userId", userId);
-				Cookie pwCookie = new Cookie("password", password);
-				response.addCookie(idCookie);
-				response.addCookie(pwCookie);
-				response.addCookie(occuCookie);
 			}
 			else if(occupation.equals("student"))
 			{
@@ -82,6 +66,12 @@ public class LoginCheck extends HttpServlet implements Filter {
 			Cookie occuCookie = new Cookie("occupation", occupation);
 			Cookie idCookie = new Cookie("userId", userId);
 			Cookie pwCookie = new Cookie("password", password);
+			if(rememberPassword.equals("true"))
+			{
+				occuCookie.setMaxAge(java.lang.Integer.MAX_VALUE);
+				idCookie.setMaxAge(java.lang.Integer.MAX_VALUE);
+				pwCookie.setMaxAge(java.lang.Integer.MAX_VALUE);
+			}
 			response.addCookie(idCookie);
 			response.addCookie(pwCookie);
 			response.addCookie(occuCookie);

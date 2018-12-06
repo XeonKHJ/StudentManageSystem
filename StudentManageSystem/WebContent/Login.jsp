@@ -8,12 +8,20 @@
 <title>学生信息管理系统：登陆界面</title>
 	<%
 		Cookie[] cookies = request.getCookies();
-		int userNo;
-		for(userNo = 0; userNo < cookies.length && !cookies[userNo].getName().equals("userId") ; ++userNo);
-		//for(pwNo = 0; pwNo < cookies.length && !cookies[pwNo].getName().equals("password"); ++pwNo);
-		if(userNo != cookies.length)
+		boolean userExist = false;
+		if (cookies != null)
 		{
-			response.sendRedirect("Home.jsp");
+			for (Cookie cookie : cookies)
+			{
+				if(cookie.getName().equals("userId"))
+				{
+					userExist = true;
+				}
+			}
+			if(userExist)
+			{
+				response.sendRedirect("Home.jsp");
+			}
 		}
 	%>
 <style>

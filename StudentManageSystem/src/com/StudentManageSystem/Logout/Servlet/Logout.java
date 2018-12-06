@@ -1,6 +1,8 @@
-package com.StudentManagementSystem.Logout.Servlet;
+package com.StudentManageSystem.Logout.Servlet;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -28,17 +30,20 @@ public class Logout extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Cookie[] cookies = request.getCookies();
-		int userNo, pwNo;
-		for(userNo = 0; userNo < cookies.length && !cookies[userNo].getName().equals("userId") ; ++userNo);
-		for(pwNo = 0; pwNo < cookies.length && !cookies[pwNo].getName().equals("password"); ++pwNo);
-		if(userNo != cookies.length + 1)
+		String path = request.getContextPath();
+		for(Cookie cookie : cookies)
 		{
-			cookies[userNo].setPath("/");//立即删除型
-			cookies[pwNo].setPath("/");
-			
-			cookies[userNo].setMaxAge(0);//立即删除型
-			cookies[pwNo].setMaxAge(0);
+			if(cookie.getName().equals("userId") || cookie.getName().equals("password") || cookie.getName().equals("occupation"))
+			{
+				cookie.setPath(request.getContextPath());
+				cookie.setMaxAge(0);
+				response.addCookie(cookie);
+			}
 		}
+		cookies = request.getCookies();
+		/*
+		RequestDispatcher dispatcher = request.getRequestDispatcher("Login.jsp"); 
+		dispatcher.forward(request, response); */
 	}
 
 	/**

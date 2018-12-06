@@ -8,24 +8,49 @@
 <link id="beangle_theme_link" href="beangle-ui,colorbox,chosen.css" rel="stylesheet" type="text/css">
 <title>个人信息</title>
 	<%
-		Cookie[] cookies = request.getCookies();
-		int userNo, pwNo;
-		for(userNo = 0; userNo < cookies.length && !cookies[userNo].getName().equals("userId") ; ++userNo);
-		for(pwNo = 0; pwNo < cookies.length && !cookies[pwNo].getName().equals("password"); ++pwNo);
-		DatabaseConnection dbConnection = new DatabaseConnection(cookies[userNo].getValue(), cookies[pwNo].getValue(), "XEON-DELL7460", "StudentsManagement");
-		String sql = "SELECT * FROM Students WHERE Sno = '" + "20162430306" + "'";
-		Connection con = dbConnection.getCon();
-		Statement stat = con.createStatement();
-		ResultSet rs = stat.executeQuery(sql);
-		rs.next();
-		String sNo = rs.getString("Sno");
-		String sName = rs.getString("Sname");
-		String sSex = rs.getString("Ssex");
-		String sBirthday = rs.getString("Sbirthday");
-		String sEnterYear = rs.getString("SenterYear");
-		String sIconPath = rs.getString("SiconPath");
-		String sSchool = rs.getString("Sschool");
-		String sMajor = rs.getString("Smajor");
+	Cookie[] cookies = request.getCookies();
+	DatabaseConnection dbCon = null;
+	String userId = "";
+	String password = "";
+	String occupation = "";
+	String name = "";
+	for(Cookie cookie : cookies)
+	{
+		if(cookie.getName().equals("userId"))
+		{
+			userId = cookie.getValue();
+		}
+		else if(cookie.getName().equals("password"))
+		{
+			password = cookie.getValue();
+		}
+		else if(cookie.getName().equals("occupation"))
+		{
+			occupation = cookie.getValue();
+		}
+	}
+	if(occupation.equals("student"))
+	{
+		dbCon = new DatabaseConnection("StudentManagementStudent", "1234", "XEON-DELL7460", "StudentsManagement");
+	}
+	else if(occupation.equals("admin"))
+	{
+		dbCon = new DatabaseConnection(userId, password, "XEON-DELL7460", "StudentsManagement");
+	}
+	
+	Connection con = dbCon.getCon();
+	Statement stat = con.createStatement();
+	String sql = "SELECT * FROM Students WHERE Sno = '" + userId + "'";
+	ResultSet rs = stat.executeQuery(sql);
+	rs.next();
+	String sNo = rs.getString("Sno");
+	String sName = rs.getString("Sname");
+	String sSex = rs.getString("Ssex");
+	String sBirthday = rs.getString("Sbirthday");
+	String sEnterYear = rs.getString("SenterYear");
+	String sIconPath = rs.getString("SiconPath");
+	String sSchool = rs.getString("Sschool");
+	String sMajor = rs.getString("Smajor");
 	%>
 </head>
 <body>
