@@ -22,16 +22,18 @@
 		var userId = document.getElementById("userId").value;
 		var password = document.getElementById("password").value;
 		var name = document.getElementById("name").value;
-		var occupation = document.getElementById("occupation").value;
 		var birthday = document.getElementById("birthday").value;
 		var enterYear = document.getElementById("enterYear").value;
+		var major = document.getElementById("major").value;
+		var school = document.getElementById("school").value;
 		
 		var registerString = "RegisterCheck?userId=" + userId + 
 							 "&password=" + password +
 							 "&name=" + name +
-							 "&occupation=" + occupation +
 							 "&birthday=" + birthday +
-							 "&enterYear=" + enterYear;
+							 "&enterYear=" + enterYear + 
+							 "&major=" + major + 
+							 "&school=" + school;
 		
 		xmlhttp.open("GET", registerString ,true);
 		xmlhttp.send();
@@ -68,13 +70,6 @@
 
 			</tr>
 			<tr>
-				<td><label for="occupation">类型：&nbsp;</label></td>
-				<td><select name="occupation" id="occupation" tabindex="6">
-						<option value="student">学生</option>
-						<option value="teacher">老师</option>
-				</select></td>
-			</tr>
-			<tr>
 				<td><label for="birthday">生日：&nbsp;</label></td>
 				<td><input name="birthday" tabindex="7" id="birthday"
 					style="width: 105px;" type="date" maxlength="40" /></td>
@@ -85,13 +80,13 @@
 					style="width: 105px;" type="text" maxlength="40" /></td>
 			</tr>
 						<tr>
-				<td><label for="enterYear">学院：&nbsp;</label></td>
-				<td><input name="enterYear" tabindex="8" id="enterYear"
+				<td><label for="school">学院：&nbsp;</label></td>
+				<td><input name="school" tabindex="9" id="school"
 					style="width: 105px;" type="text" maxlength="40" /></td>
 			</tr>
 						<tr>
-				<td><label for="enterYear">专业：&nbsp;</label></td>
-				<td><input name="enterYear" tabindex="8" id="enterYear"
+				<td><label for="major">专业：&nbsp;</label></td>
+				<td><input name="major" tabindex="10" id="major"
 					style="width: 105px;" type="text" maxlength="40" /></td>
 			</tr>
 			<tr>

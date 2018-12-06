@@ -35,17 +35,18 @@ public class RegisterCheck extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8"); 
 		PrintWriter out = response.getWriter();
-		String occupation = request.getParameter("occupation");
 		String id = request.getParameter("userId");
 		String name = request.getParameter("name");
-		String password = request.getParameter("password");
+		//String password = request.getParameter("password");
 		String birthday = request.getParameter("birthday");
 		String sex = request.getParameter("sex") == "male" ? "女": "男";
 		String enterYear = request.getParameter("enterYear");
+		String major = request.getParameter("major");
+		String school = request.getParameter("school");
 
 		try {
 			DatabaseConnection dbConnectionInfo = new DatabaseConnection("StudentManagementAdmin", "admin", "XEON-DELL7460", "StudentsManagement");
-			String createPerson = "INSERT INTO " + occupation + "s VALUES ('" + id + "', '" + name + "', '" + sex + "', '" + birthday + "', '" + enterYear +"')";
+			String createPerson = "INSERT INTO Students (Sno, Sname, Ssex, Sbirthday, SenterYear, Sschool, Smajor) VALUES ('" + id + "', '" + name + "', '" + sex + "', '" + birthday + "', '" + enterYear +"', '" + school+"', '" + major + "')";
 			Connection dbConnection = dbConnectionInfo.getCon();
 			Statement stat = dbConnection.createStatement();
 			int result = stat.executeUpdate(createPerson);

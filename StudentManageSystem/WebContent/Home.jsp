@@ -4,6 +4,27 @@
 <html>
 <head>
 <meta charset="utf-8">
+<%
+Cookie[] cookies = request.getCookies();
+String occupation = "";
+for(Cookie cookie : cookies)
+{
+	if(cookie.getName().equals("occupation"))
+	{
+		occupation = cookie.getValue();
+		break;
+	}
+}
+%>
+<script>
+	var occupation = "<%=occupation%>";
+	if(occupation == "admin")
+	{
+		var parent=document.getElementById("nav");
+		var child=document.getElementById("personalInformation");
+		parent.removeChild(child);
+	}
+</script>
 <script>
 function WelcomePage()
 {
@@ -18,7 +39,6 @@ function AddCoursePage()
 	document.getElementById("maininfo").src = "AddCourse.jsp";
 }
 </script>
-
 <style>
 #header {
 	background-color: black;
@@ -69,7 +89,7 @@ function AddCoursePage()
 
 	<div id="nav">
 		<a href="javascript:WelcomePage();">主页</a><br> 
-		<a href="javascript:PersonalInformationPage();">学籍信息</a><br>
+		<a href="javascript:PersonalInformationPage();" id="personalInformation">学籍信息</a><br>
 		<a href="javascript:ListCoursesPage();">课程列表</a><br>
 		<a href="javascript:AddStudentPage();">添加学生</a><br>
 		<a href="javascript:AddCoursePage();">添加课程</a><br>
