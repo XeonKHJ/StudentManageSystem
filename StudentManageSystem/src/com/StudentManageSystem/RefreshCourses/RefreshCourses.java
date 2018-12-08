@@ -56,7 +56,7 @@ public class RefreshCourses extends HttpServlet {
 			ResultSet rs;
 			for(rs = stat.executeQuery(queryCourses); rs.next(); )
 			{
-				response.getWriter().println("<tr><td>"+rs.getString("Cno")+"</td><td>"+rs.getString("Cname")+"</td></tr>");
+				response.getWriter().println("<tr><td><a href=\"inputScores.jsp?Cno=" + rs.getString("Cno") + "\"/>"+rs.getString("Cno")+"</td><td>"+rs.getString("Cname")+"</td></tr>");
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
