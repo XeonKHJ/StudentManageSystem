@@ -43,7 +43,7 @@ public class AddCourse extends HttpServlet {
 		String courseName = request.getParameter("courseName");
 		String deleteFlag = request.getParameter("deleteFlag");
 		String sql;
-		if(deleteFlag.equals("true"))
+		if(deleteFlag != null)
 		{
 			sql = "DELETE FROM Courses WHERE Cno = '" + courseId + "'";
 		}

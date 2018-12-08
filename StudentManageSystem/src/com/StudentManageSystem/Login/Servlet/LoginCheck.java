@@ -47,7 +47,14 @@ public class LoginCheck extends HttpServlet implements Filter {
         String password = request.getParameter("password");
         String occupation = request.getParameter("occupation");
         String rememberPassword = request.getParameter("rememberPassword");
+        String text = (String) request.getSession().getAttribute("text");
+        String image = request.getParameter("image");
 		try {
+			if(!image.equalsIgnoreCase(text))
+			{
+				out.println("2");
+				throw new Exception("验证码错误！");
+			}
 			if(occupation.equals("admin"))
 			{
 				new DatabaseConnection(userId, password, "XEON-DELL7460", "StudentsManagement");

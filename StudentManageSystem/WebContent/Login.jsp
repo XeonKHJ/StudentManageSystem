@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>学生信息管理系统：登陆界面</title>
-	<%
+<%
 		Cookie[] cookies = request.getCookies();
 		boolean userExist = false;
 		if (cookies != null)
@@ -63,8 +63,8 @@ body {
 	position: absolute;
 	width: 220px;
 	height: 164px;
-	right: 20px;
-	top: 50%;
+	right: 37%;
+	top: 49%;
 	margin-top: -82px;
 	border: 1px #7DC4DB solid;
 	-webkit-border-radius: 5px;
@@ -83,6 +83,7 @@ body {
 			var userId = document.getElementById("userId").value;
 			var password = document.getElementById("password").value;
 			var occupation = document.getElementById("occupation").value;
+			var image = document.getElementById("image").value;
 			var rememberPassword = "false";
 			if(document.getElementById("rememberPassword").checked){
 				rememberPassword = "true";
@@ -99,12 +100,13 @@ body {
 						document.getElementById("LoginFaild").innerHTML="登陆成功";
 						window.location.href = "Home.jsp";
 						}
+					}
 					else{
 						document.getElementById("LoginFaild").innerHTML="登陆失败，请检查用户名和密码！";
 					}
 				}
 			}
-			var inputParameter = "Login?userId=" + userId + "&password=" + password + "&occupation=" + occupation + "&rememberPassword=" + rememberPassword;
+			var inputParameter = "Login?userId=" + userId + "&password=" + password + "&occupation=" + occupation + "&rememberPassword=" + rememberPassword + "&image="+image;
 			xmlhttp.open("GET",inputParameter,true);
 			xmlhttp.send();
 		}
@@ -141,16 +143,15 @@ body {
 								<option value="admin">管理员</option>
 						</select></td>
 					</tr>
-										<tr>
-						<td></td>
-						<td><input type="checkbox" id="rememberPassword">记住密码</td>
-					</tr>
 					<tr>
-						<td></td>
+						<td><input type="checkbox" id="rememberPassword">记住密码</td>
 						<td><a onclick="return bg.Go(this,null)"
 							href="/eams/resetPassword.action">忘记密码?</a></td>
 					</tr>
 					<tr>
+						<td><p style="font-size:12px">验证码：<img src="VerifyCodeServlet" style="width:50px"></td>
+						<td><input type="text" id="image" style="width:50px"></td></tr> 
+						<tr><td><input type="button" value="刷新" id="btn"></td><td><font color="red">${requestScope.imageMess}</font></td>
 					</tr>
 					<tr>
 						<td colspan="2"><input name="submitBtn" tabindex="6"
