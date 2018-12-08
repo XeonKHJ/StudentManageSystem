@@ -40,7 +40,7 @@ function ListStudentsPage()
 }
 function ListCoursesPage()
 {
-	document.getElementById("maininfo").src = "RefreshCourseList";
+	document.getElementById("maininfo").src = "ChooseCourses.jsp";
 }
 </script>
 <style>

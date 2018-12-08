@@ -99,7 +99,6 @@ body {
 					if(result == 1){
 						document.getElementById("LoginFaild").innerHTML="登陆成功";
 						window.location.href = "Home.jsp";
-						}
 					}
 					else{
 						document.getElementById("LoginFaild").innerHTML="登陆失败，请检查用户名和密码！";
