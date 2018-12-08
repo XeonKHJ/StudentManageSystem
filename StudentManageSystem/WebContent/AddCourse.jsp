@@ -15,6 +15,7 @@
 	String queryCourses = "SELECT * FROM COURSES";
 %>
 <script>
+var deleteFlag = false;
 function AddCourse()
 {
 	var xmlhttp;
@@ -28,17 +29,29 @@ function AddCourse()
 			if(result == 1){
 				document.getElementById("addCourseResult").innerHTML = "添加课程成功";
 			}
+			else if(result == -1)
+			{
+				document.getElementById("addCourseResult").innerHTML = "删除课程成功";
+			}
 			else{
-				document.getElementById("addCourseResult").innerHTML = "添加失败！"
+				document.getElementById("addCourseResult").innerHTML = "操作失败！"
 			}
 			RefreshTheCoursesTable();
 		}
 	}
 	var courseId = document.getElementById("courseId").value;
 	var courseName = document.getElementById("courseName").value;
-	
-	var addCourseString = "AddCourse?courseId=" + courseId + 
-						 "&courseName=" + courseName;
+	if(deleteFlag == false)
+	{
+		var addCourseString = "AddCourse?courseId=" + courseId + 
+							 "&courseName=" + courseName;
+	}
+	else
+	{
+		var addCourseString = "AddCourse?courseId=" + courseId + 
+		 "&courseName=" + courseName + "&deleteFlag=true";
+		deleteFlag = false;
+	}
 	
 	xmlhttp.open("GET", addCourseString ,true);
 	xmlhttp.send();
@@ -79,6 +92,9 @@ function RefreshTheCoursesTable()
 				<td colspan="2"><input name="submitBtn" tabindex="9"
 					class="blue-button" type="button" onclick="AddCourse()"
 					style="margin-left: 7px; margin-right: 7px" value="添加"></td>
+				<td colspan="2"><input name="submitBtn" tabindex="9"
+					class="blue-button" type="button" onclick="deleteFlag = true; AddCourse()"
+					style="margin-left: 7px; margin-right: 7px" value="删除"></td>
 			</tr>
 			<tr>
 				<td><p id="addCourseResult" style="color: red"></p></td>

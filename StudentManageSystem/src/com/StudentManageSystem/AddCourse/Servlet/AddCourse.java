@@ -41,7 +41,16 @@ public class AddCourse extends HttpServlet {
 		
 		String courseId = request.getParameter("courseId");
 		String courseName = request.getParameter("courseName");
-		String addACourseSql = "INSERT INTO Courses VALUES ('" + courseId + "', '" + courseName + "')";
+		String deleteFlag = request.getParameter("deleteFlag");
+		String sql;
+		if(deleteFlag.equals("true"))
+		{
+			sql = "DELETE FROM Courses WHERE Cno = '" + courseId + "'";
+		}
+		else
+		{
+			sql = "INSERT INTO Courses VALUES ('" + courseId + "', '" + courseName + "')";
+		}
 		int result = 0;
 		try {
 			if(courseId == "")
@@ -51,7 +60,7 @@ public class AddCourse extends HttpServlet {
 			DatabaseConnection dbConnectionInfo = new DatabaseConnection(cookies[userNo].getValue(), cookies[pwNo].getValue(), "XEON-DELL7460", "StudentsManagement");
 			Connection con = dbConnectionInfo.getCon();
 			Statement stat = con.createStatement();
-			result = stat.executeUpdate(addACourseSql);
+			result = stat.executeUpdate(sql);
 		} catch (SQLServerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -59,7 +68,14 @@ public class AddCourse extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		response.getWriter().append(String.valueOf(result));
+		if(deleteFlag != "true")
+		{
+			response.getWriter().append(String.valueOf(result));
+		}
+		else
+		{
+			response.getWriter().append(String.valueOf(-1 * result));
+		}
 	}
 
 	/**

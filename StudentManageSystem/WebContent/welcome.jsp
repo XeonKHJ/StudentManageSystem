@@ -15,7 +15,7 @@
 	String userId = "";
 	String password = "";
 	String occupation = "";
-	String name = "";
+	String name = "管理员";
 	for(Cookie cookie : cookies)
 	{
 		if(cookie.getName().equals("userId"))

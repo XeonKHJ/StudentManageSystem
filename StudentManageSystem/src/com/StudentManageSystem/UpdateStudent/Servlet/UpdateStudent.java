@@ -1,8 +1,10 @@
-package com.StudentManageSystem.Register.Servlet;
+package com.StudentManageSystem.UpdateStudent.Servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,16 +16,16 @@ import com.StudentManageSystem.bean.DatabaseConnection;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 
 /**
- * Servlet implementation class RegisterCheck
+ * Servlet implementation class UpdateStudent
  */
-@WebServlet("/RegisterCheck")
-public class RegisterCheck extends HttpServlet {
+@WebServlet("/UpdateStudent")
+public class UpdateStudent extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RegisterCheck() {
+    public UpdateStudent() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,22 +37,35 @@ public class RegisterCheck extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8"); 
 		PrintWriter out = response.getWriter();
-		String id = request.getParameter("userId");
-		String name = request.getParameter("name");
+		String id = request.getParameter("Sno");
+		String name = request.getParameter("Sname");
 		//String password = request.getParameter("password");
-		String birthday = request.getParameter("birthday");
-		String sex = request.getParameter("sex") == "male" ? "女": "男";
-		String enterYear = request.getParameter("enterYear");
-		String major = request.getParameter("major");
-		String school = request.getParameter("school");
+		String birthday = request.getParameter("Sbirthday");
+		String sex = request.getParameter("Ssex");
+		String enterYear = request.getParameter("SenterYear");
+		String major = request.getParameter("Smajor");
+		String school = request.getParameter("Sschool");
+		String btn = request.getParameter("deletebtn");
+
 
 		try {
 			DatabaseConnection dbConnectionInfo = new DatabaseConnection("StudentManagementAdmin", "admin", "XEON-DELL7460", "StudentsManagement");
-			String createPerson = "INSERT INTO Students (Sno, Sname, Ssex, Sbirthday, SenterYear, Sschool, Smajor) VALUES ('" + id + "', '" + name + "', '" + sex + "', '" + birthday + "', '" + enterYear +"', '" + school+"', '" + major + "')";
 			Connection dbConnection = dbConnectionInfo.getCon();
 			Statement stat = dbConnection.createStatement();
-			int result = stat.executeUpdate(createPerson);
-			out.println("1");
+			String sql;
+			if(!btn.equals("删除"))
+			{
+				sql = "UPDATE Students SET Sname = '" + name + "',"
+						+ " Ssex = '" + sex + "', Sbirthday = '" + birthday + "', "
+						+ "SenterYear = '" + enterYear + "', Sschool = '" + school
+						+ "', Smajor = '" + major + "' WHERE Sno = '" + id + "'";
+			}
+			else
+			{
+				sql = "Delete From Students Where Sno = '" + id + "'";
+			}
+			int result = stat.executeUpdate(sql);
+			out.println(String.valueOf(result));
 		} catch (SQLServerException e) {
 			out.println("<p style=\"color:red\">" + e.getMessage() + "</p>");
 		} catch (SQLException e) {
@@ -58,10 +73,6 @@ public class RegisterCheck extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

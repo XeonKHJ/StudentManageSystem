@@ -16,11 +16,13 @@
 		{
 			if (xmlhttp.readyState==4 && xmlhttp.status==200)
 			{
-				document.getElementById("registerInfo").innerHTML=xmlhttp.responseText;
+				if(xmlhttp.responseText == 1)
+				{
+					document.getElementById("registerInfo").innerHTML="注册成功";
+				}
 			}
 		}
 		var userId = document.getElementById("userId").value;
-		var password = document.getElementById("password").value;
 		var name = document.getElementById("name").value;
 		var birthday = document.getElementById("birthday").value;
 		var enterYear = document.getElementById("enterYear").value;
@@ -28,7 +30,6 @@
 		var school = document.getElementById("school").value;
 		
 		var registerString = "RegisterCheck?userId=" + userId + 
-							 "&password=" + password +
 							 "&name=" + name +
 							 "&birthday=" + birthday +
 							 "&enterYear=" + enterYear + 
@@ -51,11 +52,6 @@
 				<td><input name="userId" tabindex="1" title="请输就用户名"
 					id="userId" style="width: 105px;" type="text" maxlength="40"
 					value=""></td>
-			</tr>
-			<tr>
-				<td><label for="password">密 码：&nbsp;</label></td>
-				<td><input name="password" tabindex="2" id="password"
-					style="width: 105px;" type="password" maxlength="40" /></td>
 			</tr>
 			<tr>
 				<td><label for="name">姓名：&nbsp;</label></td>

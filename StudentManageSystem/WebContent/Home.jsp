@@ -16,15 +16,7 @@ for(Cookie cookie : cookies)
 	}
 }
 %>
-<script>
-	var occupation = "<%=occupation%>";
-	if(occupation == "admin")
-	{
-		var parent=document.getElementById("nav");
-		var child=document.getElementById("personalInformation");
-		parent.removeChild(child);
-	}
-</script>
+
 <script>
 function WelcomePage()
 {
@@ -37,6 +29,18 @@ function PersonalInformationPage()
 function AddCoursePage()
 {
 	document.getElementById("maininfo").src = "AddCourse.jsp";
+}
+function AddStudentPage()
+{
+	document.getElementById("maininfo").src = "AddStudent.jsp";
+}
+function ListStudentsPage()
+{
+	document.getElementById("maininfo").src = "ListStudents";
+}
+function ListCoursesPage()
+{
+	document.getElementById("maininfo").src = "RefreshCourseList";
 }
 </script>
 <style>
@@ -93,8 +97,17 @@ function AddCoursePage()
 		<a href="javascript:ListCoursesPage();">课程列表</a><br>
 		<a href="javascript:AddStudentPage();">添加学生</a><br>
 		<a href="javascript:AddCoursePage();">添加课程</a><br>
+		<a href="javascript:ListStudentsPage();">学生列表</a><br>
 	</div>
-
+<script>
+	var occupation = "<%=occupation%>";
+	if(occupation == "admin")
+	{
+		var parent=document.getElementById("nav");
+		var child=document.getElementById("personalInformation");
+		parent.removeChild(child);
+	}
+</script>
 	<div id="section">
 		<iframe id="maininfo" src="welcome.jsp"></iframe>
 	</div>
