@@ -39,7 +39,15 @@ public class RegisterCheck extends HttpServlet {
 		String name = request.getParameter("name");
 		//String password = request.getParameter("password");
 		String birthday = request.getParameter("birthday");
-		String sex = request.getParameter("sex") == "male" ? "女": "男";
+		String sex = "";
+		if(request.getParameter("sex").equals("male"))
+		{
+			sex = "男";
+		}
+		else
+		{
+			sex = "女";
+		}
 		String enterYear = request.getParameter("enterYear");
 		String major = request.getParameter("major");
 		String school = request.getParameter("school");

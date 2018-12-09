@@ -81,7 +81,7 @@ public class ChangePassword extends HttpServlet {
 			}
 			Connection con = dbCon.getCon();
 			Statement stat = con.createStatement();
-			String changePwSql = "UPDATE Students SET Spassword = '" + newPw + "'";
+			String changePwSql = "UPDATE Students SET Spassword = '" + newPw + "' WHERE Sno = '" + userId + "'" ;
 			stat.executeUpdate(changePwSql);
 			response.getWriter().println("修改成功，请重新登录");
 			response.sendRedirect("Logout");

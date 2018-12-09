@@ -28,9 +28,16 @@
 		var enterYear = document.getElementById("enterYear").value;
 		var major = document.getElementById("major").value;
 		var school = document.getElementById("school").value;
+		var sexOptions = document.getElementsByName("sex");
+		var sex = "female";
+		if(sexOptions[0].checked)
+		{
+			sex = "male"; 
+		}
 		
 		var registerString = "RegisterCheck?userId=" + userId + 
 							 "&name=" + name +
+							 "&sex=" + sex +
 							 "&birthday=" + birthday +
 							 "&enterYear=" + enterYear + 
 							 "&major=" + major + 
@@ -60,8 +67,8 @@
 			</tr>
 			<tr>
 				<td><label for="sex">性别：&nbsp;</label></td>
-				<td><input type="radio" name="sex" value="male" checked
-					tabindex="4">男 <br> <input type="radio" name="sex"
+				<td><input type="radio" name="sex" id="sex" value="male" checked
+					tabindex="4">男 <br><input type="radio" name="sex" id="sex"
 					value="female" tabindex="5">女</td>
 
 			</tr>

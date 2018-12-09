@@ -73,7 +73,7 @@
 					<td><%=sName %></td>
 					<td width="11%" id="photoImg" rowspan="5"><img width="80"
 						height="110" title="<%=sName %>" alt="<%=sName %>"
-						src="<%=sIconPath%>"></td>
+						src="<%=sIconPath%>"><br><a href="UploadIcon.jsp">修改头像</a></td>
 				</tr>
 				<tr>
 					<td class="title" style="width: 18%">性别：</td>

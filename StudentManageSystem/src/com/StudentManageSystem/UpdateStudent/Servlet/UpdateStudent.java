@@ -53,7 +53,7 @@ public class UpdateStudent extends HttpServlet {
 			Connection dbConnection = dbConnectionInfo.getCon();
 			Statement stat = dbConnection.createStatement();
 			String sql;
-			if(!btn.equals("删除"))
+			if(btn == null)
 			{
 				sql = "UPDATE Students SET Sname = '" + name + "',"
 						+ " Ssex = '" + sex + "', Sbirthday = '" + birthday + "', "
