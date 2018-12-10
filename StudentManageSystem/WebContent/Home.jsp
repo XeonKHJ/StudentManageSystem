@@ -92,22 +92,17 @@ function ListCoursesPage()
 	</div>
 
 	<div id="nav">
-		<a href="javascript:WelcomePage();">主页</a><br> 
+		<a href="javascript:WelcomePage();">主页</a><br>
+		<%if (occupation.equals("student")) {%> 
 		<a href="javascript:PersonalInformationPage();" id="personalInformation">学籍信息</a><br>
 		<a href="javascript:ListCoursesPage();">课程列表</a><br>
+		<%}else if(occupation.equals("admin")) {%>
 		<a href="javascript:AddStudentPage();">添加学生</a><br>
 		<a href="javascript:AddCoursePage();">添加课程</a><br>
 		<a href="javascript:ListStudentsPage();">学生列表</a><br>
+		<%} %>
 	</div>
-<script>
-	var occupation = "<%=occupation%>";
-	if(occupation == "admin")
-	{
-		var parent=document.getElementById("nav");
-		var child=document.getElementById("personalInformation");
-		parent.removeChild(child);
-	}
-</script>
+
 	<div id="section">
 		<iframe id="maininfo" src="welcome.jsp"></iframe>
 	</div>
