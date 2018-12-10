@@ -144,8 +144,8 @@ body {
 					</tr>
 					<tr>
 						<td><input type="checkbox" id="rememberPassword">记住密码</td>
-						<td><a onclick="return bg.Go(this,null)"
-							href="/eams/resetPassword.action">忘记密码?</a></td>
+						<td><!-- <a onclick="return bg.Go(this,null)"
+							href="/eams/resetPassword.action">忘记密码?</a> --></td>
 					</tr>
 					<tr>
 						<td><p style="font-size:12px">验证码：<img src="VerifyCodeServlet" style="width:50px"></td>
@@ -163,6 +163,12 @@ body {
 				</tbody>
 			</table>
 		</form>
+		<script>
+	    document.getElementById("btn").onclick = function () {
+	        document.getElementsByTagName("img")[0].src =
+	            "VerifyCodeServlet?time=" + new Date().getTime();
+	    }
+	    </script>
 	</div>
 </body>
 </html>
