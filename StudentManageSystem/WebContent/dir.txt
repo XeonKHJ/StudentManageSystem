@@ -1,0 +1,31 @@
+ 驱动器 D 中的卷是 DATA
+ 卷的序列号是 AEDE-A045
+
+ D:\Users\redal\Documents\Source\Repos\StudentManageSystem\StudentManageSystem\WebContent 的目录
+
+2018/12/13  10:49    <DIR>          .
+2018/12/13  10:49    <DIR>          ..
+2018/12/08  10:45             3,496 AddCourse.jsp
+2018/12/09  15:19             3,313 AddStudent.jsp
+2018/11/30  13:40            33,438 beangle-ui,colorbox,chosen.css
+2018/12/08  15:32             2,375 Captcha.jsp
+2018/12/09  12:21             1,595 ChangePassword.jsp
+2018/12/09  12:07             4,030 ChooseCourses.jsp
+2018/12/07  04:53             2,527 CourseList.jsp
+2018/12/13  10:49                 0 dir.txt
+2018/12/09  14:45             4,685 EditStudent.jsp
+2018/11/22  01:51               231 ForgetPassword.jsp
+2018/12/13  02:38             2,351 Home.jsp
+2018/12/13  02:28             1,904 index.jsp
+2018/12/08  15:11             2,412 InputScores.jsp
+2018/11/29  21:07            34,517 jquery-ui.css
+2018/12/10  13:19             5,506 Login.jsp
+2018/12/06  19:48             1,070 LoginInformation.jsp
+2018/11/18  13:13    <DIR>          META-INF
+2018/12/09  14:45             3,176 PersonalInformation.jsp
+2018/12/06  00:20             3,177 Register.jsp
+2018/12/09  13:24               419 UploadIcon.jsp
+2018/12/08  09:08    <DIR>          WEB-INF
+2018/12/08  08:31             1,635 welcome.jsp
+              20 个文件        111,857 字节
+               4 个目录 35,611,598,848 可用字节
