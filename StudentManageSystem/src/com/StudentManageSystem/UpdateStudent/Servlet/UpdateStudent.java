@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -65,7 +66,7 @@ public class UpdateStudent extends HttpServlet {
 				sql = "Delete From Students Where Sno = '" + id + "'";
 			}
 			int result = stat.executeUpdate(sql);
-			out.println(String.valueOf(result));
+			out.println("成功更改" + String.valueOf(result) + "个学生的信息。");
 		} catch (SQLServerException e) {
 			out.println("<p style=\"color:red\">" + e.getMessage() + "</p>");
 		} catch (SQLException e) {

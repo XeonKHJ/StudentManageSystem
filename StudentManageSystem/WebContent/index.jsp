@@ -60,17 +60,8 @@ body {
 
 <body>
 	<%
-			SQLServerDataSource ds = new SQLServerDataSource();
-			ds.setUser("20162430306");
-			ds.setPassword("0978286092");
-			ds.setServerName("XEON-DELL7460");
-			ds.setDatabaseName("StudentsManagement");
-			try (Connection con = ds.getConnection())
-			{
-				out.println("fuckit");
-			}
-			Student student = new Student("abc");
-			out.println(student.getId());
+	RequestDispatcher dispatcher = request.getRequestDispatcher("/Login.jsp"); 
+	dispatcher .forward(request, response); 
 		%>
 </body>
 </html>

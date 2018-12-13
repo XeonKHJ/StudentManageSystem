@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>学生信息管理系统</title>
 <meta charset="utf-8">
 <%
 Cookie[] cookies = request.getCookies();
@@ -87,7 +88,9 @@ function ListCoursesPage()
 
 	<div id="header">
 		<a href="Logout" style="float: right; font: 5px" >退出登录</a>
+		<%if (occupation.equals("student")) {%> 
 		<a href="ChangePassword.jsp" style="float:right; font:5px">修改密码</a>
+		<%} %>
 		<h1>学生信息管理系统</h1>
 	</div>
 
